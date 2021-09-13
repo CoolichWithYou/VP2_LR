@@ -12,6 +12,6 @@ namespace otv
 		void SetItemName(string name);
 		void SetFunc(func F);
 		void Print();
-		func Run();
+		int Run();
 	};
 }

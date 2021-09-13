@@ -24,8 +24,8 @@ namespace otv
 	{
 		std::cout << m_item_name;
 	}
-	func ItemMenu::Run()
+	int ItemMenu::Run()
 	{
-		return m_func;
+		return m_func();
 	}
 }

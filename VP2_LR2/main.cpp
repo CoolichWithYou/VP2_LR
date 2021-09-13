@@ -25,16 +25,16 @@ int VERIFY;
 User* CUR_USER{};
 
 
-void AddIt();
-void DelIt();
-void EditIt();
-void SortIt();
-void FilterIt();
-void VerifyOut();
-void AddClient();
-void AddEmployee();
-void Verify();
-void Screen_2();
+int AddIt();
+int DelIt();
+int EditIt();
+int SortIt();
+int FilterIt();
+int VerifyOut();
+int AddClient();
+int AddEmployee();
+int Verify();
+int Screen_2();
 
 int main()
 {
@@ -119,19 +119,25 @@ int main()
 
 
 
-void AddClient()
+int AddClient()
 {
+	cout << "Enter login, password, name:\n";
 	Client tmp_cli{};
+	cout << "";
 	tmp_cli.In();
 	CLIENT.push_back(tmp_cli);
-};
-void AddEmployee()
+
+	return 0;
+}
+int AddEmployee()
 {
 	Employee tmp_emp{};
+	cout << "Enter login, password, name:\n";
 	tmp_emp.In();
 	EMPLOYEE.push_back(tmp_emp);
-};
-void Verify()	
+	return 0;
+}
+int Verify()
 //пройти по векторам пользователей, сверить логины и пароли
 {
 	User tmp_user{};
@@ -151,11 +157,12 @@ void Verify()
 			CUR_USER = &EMPLOYEE[i];
 		}
 	}
-};
+	return 0;
+}
 
 
 
-void Screen_2()
+int Screen_2()
 {
 #pragma region заполнение массива пунктов второго меню
 	ifstream fin;
@@ -185,30 +192,31 @@ void Screen_2()
 		cout << menu_func;
 		cin >> menu_func;
 	} while (VERIFY);
+	return 0;
 }
 
 
 
 
 
-void AddIt() {
-
+int AddIt() {
+	return 0;
 };
-void DelIt() {
-
+int DelIt() {
+	return 0;
 };
-void EditIt() {
-
+int EditIt() {
+	return 0;
 };
-void SortIt() {
-
+int SortIt() {
+	return 0;
 };
-void FilterIt() {
-
+int FilterIt() {
+	return 0;
 };
 
-void VerifyOut()
+int VerifyOut()
 {
 	VERIFY = 0;
-
+	return 0;
 };

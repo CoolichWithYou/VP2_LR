@@ -1,7 +1,7 @@
-4
-редактировать данные аккаунта
-перейти к списку пользователей
-удалить аккаунт
-выйти из аккаунта
+5
+Edit account data
+Go to User list
+Go to Card list
+Delete account
+Exit from account
 
-//перейти к действиям со списком карт

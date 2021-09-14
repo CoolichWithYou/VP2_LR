@@ -1,8 +1,8 @@
-#define _CRT_SECURE_NO_WARNINGS
+п»ї#define _CRT_SECURE_NO_WARNINGS
 #include "Account.h"
 using namespace std;
 
-//ввод элемента;
+//РІРІРѕРґ СЌР»РµРјРµРЅС‚Р°;
 
 Account::Account()
 {
@@ -18,11 +18,11 @@ void Account::Trans(Account scd, int summ_tr)
 
 void Account::Print() const
 {
-	cout << "Имя карты - " << m_name << endl;
-	cout << "Номер карты - " << m_id << endl;
-	cout << "ID владельца карты - " << m_id_owner << endl;
-	cout << "Дата создания карты - " << m_date << endl;
-	cout << "\t Баланс: " << m_balance << endl;
+	cout << "Card title - " << m_name << endl;
+	cout << "Card ID - " << m_id << endl;
+	cout << "Card owner ID- " << m_id_owner << endl;
+	cout << "Card creation date - " << m_date << endl;
+	cout << "\t Balance: " << m_balance << endl;
 }
 ostream& operator<< (ostream& out, const Account& acc)
 {

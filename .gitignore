@@ -30,3 +30,8 @@
 *.exe
 *.out
 *.app
+
+# My file
+*.suo
+*.db
+*.ipch

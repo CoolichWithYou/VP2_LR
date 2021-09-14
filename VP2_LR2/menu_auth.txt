@@ -1,4 +1,4 @@
 3
-Создать аккаунт клиента
-Создать аккаунт сотрудника
-Авторизоваться
+Create Client account
+Create employee account
+Authorize

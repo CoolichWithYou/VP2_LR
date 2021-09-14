@@ -7,7 +7,7 @@ class Account
 	size_t m_id_owner{};
 	size_t m_id{};
 	string m_name{};
-	char* m_date;	
+	char* m_date;
 	unsigned long m_balance{};
 public:
 	Account();

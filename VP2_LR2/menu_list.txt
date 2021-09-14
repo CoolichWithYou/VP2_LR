@@ -1,7 +1,7 @@
 6
-добавить элемент в конец списка
-удалить элемент по индексу
-редактировать элемент по индексу
-сортировать список
-фильтровать список
-вернуться к меню сотрудника
+Add element to the end
+Delete element by ID
+Edit element by ID
+Sort list
+Filter list
+Go to screen before

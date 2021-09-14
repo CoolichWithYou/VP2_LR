@@ -4,6 +4,21 @@ using namespace std;
 
 //перегрузить операторы сравнения на int и char и присвоения 
 
+string User::GetLogin()
+{
+	return m_login;
+}
+
+string User::GetPass()
+{
+	return m_pass;
+}
+bool User::GetLvl()
+{
+	return m_lvl;
+}
+
+
 User::User()
 {
 	m_id = ID_user++;
@@ -13,7 +28,12 @@ User::User()
 
 void User::In()
 {
+	cout << "Enter login:	";
+	
 	cin >> m_login;
+
+	cout << "\nEnter password:	";
+
 	cin >> m_pass;
 }
 
@@ -28,8 +48,8 @@ string User::OutLvl()
 void User::PrintParent() const
 {
 	//OutLvl();
-	cout << "ID пользователя - " << m_id << endl;
-	cout << "Имя пользователя - " << m_name << endl;
+	cout << "ID:	" << m_id << endl;
+	cout << "Name:	" << m_name << endl;
 }
 ostream& operator<<(ostream& out, const User& man)
 {

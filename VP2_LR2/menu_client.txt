@@ -1,8 +1,7 @@
-7
-редактировать данные аккаунта
-вывести реквезиты всех карт
-добавить карту
-удалить карту
-перевести по номеру карты
-удалить аккаунт
-выйти из аккаунта
+6
+Edit account data
+Print all cards information
+Add card
+Delete card
+Delete account 
+Exit from account

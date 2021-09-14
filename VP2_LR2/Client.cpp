@@ -11,9 +11,9 @@ Client::Client()
 
 void Client::Print() const
 {
-	cout << "Тип пользователя - Клиент" << endl;
-	cout << "ID пользователя - " << m_id << endl;
-	cout << "Имя польззователя - " << m_name << endl;
+	cout << "User type: Client" << endl;
+	cout << "\nID:" << m_id << endl;
+	cout << "\nName:" << m_name << endl;
 }
 
 
@@ -29,8 +29,11 @@ void Client::Print() const
 }*/
 void Client::In()
 {
+	cout << "Input login:	";
 	cin >> m_login;
+	cout << "\nInput password:	";
 	cin >> m_pass;
+	cout << "\nInput name:	";
 	cin >> m_name;
 }
 bool operator> (const Client& a, const Client& b)

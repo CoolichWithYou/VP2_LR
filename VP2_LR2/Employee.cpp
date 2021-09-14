@@ -18,9 +18,9 @@ void Employee::In()
 
 void Employee::Print() const
 {
-	cout << "Тип пользователя - Сотрудник" << endl;
-	cout << "ID пользователя - " << m_id << endl;
-	cout << "Имя польззователя - " << m_name << endl;
+	cout << "User type - employee" << endl;
+	cout << "User ID - " << m_id << endl;
+	cout << "User Name - " << m_name << endl;
 }
 
 /*Employee Employee:: operator=(Employee a)

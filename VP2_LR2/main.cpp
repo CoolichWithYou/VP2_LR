@@ -100,7 +100,7 @@ int main()
 
 #pragma region вызов первого меню
 	CMenu menu_auth = CMenu("Sign in menu", items_1, item_count_1);
-
+	system("cls");
 	while (CUR_USER == nullptr)
 	{
 		cout << menu_auth;
@@ -121,18 +121,14 @@ int main()
 
 int AddClient()
 {
-	cout << "Enter login, password, name:\n";
 	Client tmp_cli{};
-	cout << "";
 	tmp_cli.In();
 	CLIENT.push_back(tmp_cli);
-
 	return 0;
 }
 int AddEmployee()
 {
 	Employee tmp_emp{};
-	cout << "Enter login, password, name:\n";
 	tmp_emp.In();
 	EMPLOYEE.push_back(tmp_emp);
 	return 0;
@@ -147,7 +143,6 @@ int Verify()
 		if (true)
 		{
 			CUR_USER = &CLIENT[i];
-
 		}
 	}
 	for (int i = 0; i < EMPLOYEE.size(); i++)

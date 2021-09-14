@@ -13,7 +13,9 @@ User::User()
 
 void User::In()
 {
+	cout << "Input login:	";
 	cin >> m_login;
+	cout << "\nInput password:	";
 	cin >> m_pass;
 }
 

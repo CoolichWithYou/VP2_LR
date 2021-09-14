@@ -36,6 +36,7 @@ namespace otv
 #pragma endregion
     void CMenu::Print() const
     {
+        system("cls");
         cout << m_title << endl;
         for (int i = 0; i < m_count; i++)
         {

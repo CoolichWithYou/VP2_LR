@@ -18,10 +18,10 @@ void Account::Trans(Account scd, int summ_tr)
 
 void Account::Print() const
 {
-	cout << "Card title - " << m_name << endl;
-	cout << "Card ID - " << m_id << endl;
-	cout << "Card owner ID- " << m_id_owner << endl;
-	cout << "Card creation date - " << m_date << endl;
+	cout << "Card name - " << m_name << endl;
+	cout << "card number - " << m_id << endl;
+	cout << "card owner ID - " << m_id_owner << endl;
+	cout << "release of card data - " << m_date << endl;
 	cout << "\t Balance: " << m_balance << endl;
 }
 ostream& operator<< (ostream& out, const Account& acc)

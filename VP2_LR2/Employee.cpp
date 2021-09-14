@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+﻿#define _CRT_SECURE_NO_WARNINGS
 #include "Employee.h"
 
 Employee::Employee()
@@ -18,9 +18,9 @@ void Employee::In()
 
 void Employee::Print() const
 {
-	cout << "User type - employee" << endl;
-	cout << "User ID - " << m_id << endl;
-	cout << "User Name - " << m_name << endl;
+	cout << "User info:" << endl;
+	cout << "ID - " << m_id << endl;
+	cout << "Name - " << m_name << endl;
 }
 
 /*Employee Employee:: operator=(Employee a)

@@ -1,23 +1,8 @@
-#define _CRT_SECURE_NO_WARNINGS
+п»ї#define _CRT_SECURE_NO_WARNINGS
 #include "User.h"
 using namespace std;
 
-//перегрузить операторы сравнения на int и char и присвоения 
-
-string User::GetLogin()
-{
-	return m_login;
-}
-
-string User::GetPass()
-{
-	return m_pass;
-}
-bool User::GetLvl()
-{
-	return m_lvl;
-}
-
+//ГЇГҐГ°ГҐГЈГ°ГіГ§ГЁГІГј Г®ГЇГҐГ°Г ГІГ®Г°Г» Г±Г°Г ГўГ­ГҐГ­ГЁГї Г­Г  int ГЁ char ГЁ ГЇГ°ГЁГ±ГўГ®ГҐГ­ГЁГї 
 
 User::User()
 {
@@ -28,28 +13,23 @@ User::User()
 
 void User::In()
 {
-	cout << "Enter login:	";
-	
 	cin >> m_login;
-
-	cout << "\nEnter password:	";
-
 	cin >> m_pass;
 }
 
 
 
 
-#pragma region  вывод
+#pragma region  ГўГ»ГўГ®Г¤
 string User::OutLvl()
 {
-	return (m_lvl) ? ("Сотрудник") : ("Клиент");
+	return (m_lvl) ? ("Г‘Г®ГІГ°ГіГ¤Г­ГЁГЄ") : ("ГЉГ«ГЁГҐГ­ГІ");
 }
 void User::PrintParent() const
 {
 	//OutLvl();
-	cout << "ID:	" << m_id << endl;
-	cout << "Name:	" << m_name << endl;
+	cout << "ID - " << m_id << endl;
+	cout << "Name - " << m_name << endl;
 }
 ostream& operator<<(ostream& out, const User& man)
 {

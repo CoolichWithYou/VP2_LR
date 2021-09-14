@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+﻿#define _CRT_SECURE_NO_WARNINGS
 #include "Client.h"
 
 Client::Client()
@@ -11,9 +11,9 @@ Client::Client()
 
 void Client::Print() const
 {
-	cout << "User type: Client" << endl;
-	cout << "\nID:" << m_id << endl;
-	cout << "\nName:" << m_name << endl;
+	cout << "Client info" << endl;
+	cout << "ID - " << m_id << endl;
+	cout << "Name - " << m_name << endl;
 }
 
 
@@ -29,11 +29,8 @@ void Client::Print() const
 }*/
 void Client::In()
 {
-	cout << "Input login:	";
 	cin >> m_login;
-	cout << "\nInput password:	";
 	cin >> m_pass;
-	cout << "\nInput name:	";
 	cin >> m_name;
 }
 bool operator> (const Client& a, const Client& b)

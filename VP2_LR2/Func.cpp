@@ -52,7 +52,7 @@ void Edit(Type* arr, size_t index)
 {
 	Type tmp{};
 	cout << arr[index];
-	cout << "Input new date:	" << endl;
+	cout << "Input new data" << endl;
 	cin >> tmp;
 	arr[index] = tmp;
 }

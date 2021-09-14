@@ -5,7 +5,6 @@
 #include "CMenu.h"
 #include "Client.h"
 #include "Employee.h"
-#include "Account.h"
 
 using namespace std;
 using namespace otv;
@@ -18,249 +17,187 @@ MENU_AUTH = "menu_auth.txt",
 MENU_CLI = "menu_client.txt",
 MENU_EMP = "menu_employee.txt";
 
-ifstream FIN_BIN, FIN_TXT;
 char* buff = new char[1024]{};
 
 vector<Client> CLIENT{};
 vector <Employee> EMPLOYEE{};
-vector <Account> ACCOUNT{};
 int VERIFY;
 User* CUR_USER{};
 
-int AddClient();
-int AddEmployee();
-int Verify();
 
-
-int OutputAcc();
-int VerifyOut();
-
-//шаблоны
 int AddIt();
 int DelIt();
 int EditIt();
 int SortIt();
 int FilterIt();
-
-
-
-void Screen_0();
-void Screen_1();
-void Screen_2();
-
-
-
-
-
-
+int VerifyOut();
+int AddClient();
+int AddEmployee();
+int Verify();
+int Screen_2();
 
 int main()
 {
 	setlocale(0, "");
 
 #pragma region Загрузка файла клиентов
-
-	FIN_BIN.open(CLI, ios_base::in);
+	ifstream fin;
+	fin.open(CLI, ios_base::in);
 
 	size_t item_count{};
-	FIN_BIN >> item_count;
-	FIN_BIN.ignore();
+	fin >> item_count;
+	fin.ignore();
 
 
 	Client tmp_client{};
-	for (int i = 0; i < item_count && FIN_BIN.is_open(); i++)
+	for (int i = 0; i < item_count && fin.is_open(); i++)
 	{
-		FIN_BIN.read((char*)&tmp_client, sizeof(Client));
+		fin.read((char*)&tmp_client, sizeof(Client));
 		CLIENT.push_back(tmp_client);
 	}
-	FIN_BIN.close();
+	fin.close();
 #pragma endregion
 
 #pragma region Загрузка файла сотрудников
 
-	FIN_BIN.open(EMP, ios_base::in);
+	fin.open(EMP, ios_base::in);
 
 	item_count = 0;
-	FIN_BIN >> item_count;
-	FIN_BIN.ignore();
+	fin >> item_count;
+	fin.ignore();
 
 
 	Employee tmp_employee{};
-	for (int i = 0; i < item_count && FIN_BIN.is_open(); i++)
+	for (int i = 0; i < item_count && fin.is_open(); i++)
 	{
-		FIN_BIN.read((char*)&tmp_employee, sizeof(Employee));
+		fin.read((char*)&tmp_client, sizeof(Employee));
 		EMPLOYEE.push_back(tmp_employee);
 	}
-	FIN_BIN.close();
+	fin.close();
 #pragma endregion
 
-#pragma region Загрузка файла карт
+#pragma region заполнение массива пунктов первого меню
 
-	FIN_BIN.open(EMP, ios_base::in);
-
-	item_count = 0;
-	FIN_BIN >> item_count;
-	FIN_BIN.ignore();
-
-
-	Account tmp_account{};
-	for (int i = 0; i < item_count && FIN_BIN.is_open(); i++)
-	{
-		FIN_BIN.read((char*)&tmp_account, sizeof(Account));
-		ACCOUNT.push_back(tmp_account);
-	}
-	FIN_BIN.close();
-#pragma endregion
-
-	Screen_0();
-	if (!CUR_USER->GetLvl())
-	{
-		Screen_1();
-	}
-	else
-	{
-		Screen_2();
-	}
-
-	system("pause");
-	return 0;
-}
-
-
-
-#pragma region функции меню авторизации
-int AddClient()
-//добавляет клиента в вектор
-{
-	Client tmp_cli{};
-	tmp_cli.In();
-	CLIENT.push_back(tmp_cli);
-
-	return 0;
-}
-int AddEmployee()
-//добавляет сотрудника в вектор
-{
-	Employee tmp_emp{};
-	tmp_emp.In();
-	EMPLOYEE.push_back(tmp_emp);
-	return 0;
-}
-int Verify()
-//проходит по векторам пользователей, сверяет логины и пароли
-{
-	User tmp_user{};
-	tmp_user.In();
-	for (int i = 0; i < CLIENT.size(); i++)
-	{
-		if (tmp_user.GetLogin() == CLIENT[i].GetLogin())
-		{
-			cout << "Пользователь найден!" << endl;
-			if (tmp_user.GetPass() == CLIENT[i].GetPass()) {
-				CUR_USER = &CLIENT[i];
-				cout << "Пароль верный" << endl;
-			}
-		}
-	}
-	for (int i = 0; i < EMPLOYEE.size(); i++)
-	{
-		if (tmp_user.GetLogin() == EMPLOYEE[i].GetLogin())
-		{
-			cout << "Пользователь найден!" << endl;
-			if (tmp_user.GetPass() == EMPLOYEE[i].GetPass()) {
-				CUR_USER = &EMPLOYEE[i];
-				cout << "Пароль верный" << endl;
-			}
-		}
-	}
-	if (CUR_USER == nullptr)
-	{
-		cout << "Неверно введены данные" << endl;
-	}
-	return 0;
-}
-#pragma endregion
-void Screen_0()
-{
-#pragma region заполнение массива пунктов меню авторизации
-
-	FIN_BIN.open(MENU_AUTH);
+	fin.open(MENU_AUTH);
 
 	size_t item_count_1{};
-	FIN_BIN >> item_count_1;
-	FIN_BIN.ignore();
+	fin >> item_count_1;
+	fin.ignore();
 
 	ItemMenu* items_1 = new ItemMenu[item_count_1]{};
-	for (int i = 0; i < item_count_1 && FIN_BIN.is_open(); i++)
+	for (int i = 0; i < item_count_1 && fin.is_open(); i++)
 	{
-		FIN_BIN.getline(buff, 1023);
+		fin.getline(buff, 1023);
 		items_1[i].SetItemName(buff);
 	}
-	FIN_BIN.close();
+	fin.close();
 
 
 	items_1[0].SetFunc(AddClient);
 	items_1[1].SetFunc(AddEmployee);
 	items_1[2].SetFunc(Verify);
 #pragma endregion
-#pragma region вызов меню авторизции
 
-	CMenu menu_auth = CMenu("Меню входа", items_1, item_count_1);
+#pragma region вызов первого меню
+	CMenu menu_auth = CMenu("Sign in menu", items_1, item_count_1);
 
 	while (CUR_USER == nullptr)
 	{
 		cout << menu_auth;
 		menu_auth.RunCommand();
 	}
-#pragma endregion
+
+	Screen_2();
+
+
+	system("pause");
+	return 0;
 }
-
-
-#pragma region функции меню клиента
-
 #pragma endregion
 
-void Screen_1()
+
+
+
+
+int AddClient()
 {
-#pragma region заполнение массива пунктов меню клиента
+	cout << "Enter login, password, name:\n";
+	Client tmp_cli{};
+	cout << "";
+	tmp_cli.In();
+	CLIENT.push_back(tmp_cli);
 
-	FIN_TXT.open(MENU_AUTH);
-
-	size_t item_count{};
-	FIN_TXT >> item_count;
-	FIN_TXT.ignore();
-
-	ItemMenu* item = new ItemMenu[item_count]{};
-	for (int i = 0; i < item_count && FIN_TXT.is_open(); i++)
+	return 0;
+}
+int AddEmployee()
+{
+	Employee tmp_emp{};
+	cout << "Enter login, password, name:\n";
+	tmp_emp.In();
+	EMPLOYEE.push_back(tmp_emp);
+	return 0;
+}
+int Verify()
+//пройти по векторам пользователей, сверить логины и пароли
+{
+	User tmp_user{};
+	tmp_user.In();
+	for (int i = 0; i < CLIENT.size(); i++)
 	{
-		FIN_TXT.getline(buff, 1023);
-		item[i].SetItemName(buff);
+		if (true)
+		{
+			CUR_USER = &CLIENT[i];
+
+		}
 	}
-	FIN_TXT.close();
-
-
-	item[0].SetFunc(EditIt);
-	item[1].SetFunc(OutputAcc);
-	item[2].SetFunc(AddIt);
-	item[3].SetFunc(DelIt);
-	item[4].SetFunc(DelIt);
-	item[5].SetFunc(VerifyOut);
-
-#pragma endregion
-#pragma region вызов меню клиента
-
-	CMenu menu_cli = CMenu("Меню клиента", item, item_count);
-
-	while (CUR_USER == nullptr)
+	for (int i = 0; i < EMPLOYEE.size(); i++)
 	{
-		cout << menu_cli;
-		menu_cli.RunCommand();
+		if (true)
+		{
+			CUR_USER = &EMPLOYEE[i];
+		}
 	}
-#pragma endregion
+	return 0;
 }
 
 
-#pragma region функции меню сотрудника
+
+int Screen_2()
+{
+#pragma region заполнение массива пунктов второго меню
+	ifstream fin;
+	fin.open(MENU_CLI);
+	size_t item_count_2{};
+	fin >> item_count_2;
+
+	ItemMenu* items_2 = new ItemMenu[item_count_2]{};
+	for (int i = 0; i < item_count_2 && fin.is_open(); i++)
+	{
+		fin >> buff;
+		items_2[i].SetItemName(buff);
+	}
+	fin.close();
+
+	items_2[0].SetFunc(AddIt);
+	items_2[1].SetFunc(DelIt);
+	items_2[2].SetFunc(EditIt);
+	items_2[3].SetFunc(SortIt);
+	items_2[4].SetFunc(FilterIt);
+	items_2[5].SetFunc(VerifyOut);
+#pragma endregion
+
+	CMenu menu_func = CMenu("User menu", items_2, item_count_2);
+	do
+	{
+		cout << menu_func;
+		cin >> menu_func;
+	} while (VERIFY);
+	return 0;
+}
+
+
+
+
 
 int AddIt() {
 	return 0;
@@ -283,41 +220,3 @@ int VerifyOut()
 	VERIFY = 0;
 	return 0;
 };
-
-int OutputAcc() {
-	return 0;
-}
-
-#pragma endregion
-void Screen_2()
-{
-#pragma region заполнение массива пунктов меню сотрудника
-	ifstream FIN_TXT;
-	FIN_TXT.open(MENU_CLI);
-	size_t item_count{};
-	FIN_TXT >> item_count;
-
-	ItemMenu* item = new ItemMenu[item_count]{};
-	for (int i = 0; i < item_count && FIN_TXT.is_open(); i++)
-	{
-		FIN_TXT >> buff;
-		item[i].SetItemName(buff);
-	}
-	FIN_TXT.close();
-
-	item[0].SetFunc(AddIt);
-	item[1].SetFunc(DelIt);
-	item[2].SetFunc(EditIt);
-	item[3].SetFunc(SortIt);
-	item[4].SetFunc(FilterIt);
-	item[5].SetFunc(VerifyOut);
-#pragma endregion
-
-	CMenu menu_func = CMenu("Меню пользователя", item, item_count);
-	do
-	{
-		cout << menu_func;
-		cin >> menu_func;
-	} while (VERIFY);
-}
-
